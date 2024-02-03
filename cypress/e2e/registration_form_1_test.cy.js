@@ -107,12 +107,13 @@ describe('This is first test suite, Sergei Vort', () => {
         // Add test, similar to previous one with phone number field not filled in
         // Fill in all fields except phone number
         // All other fields should be entered correctly
+        cy.get('#username').type('Something')
         cy.get('#name').type('John Doe');
         cy.get('#email').type('john.doe@example.com');
         cy.get('#password').type('securePassword');
         cy.get('#confirmPassword').type('securePassword');
         // Assert that submit button is not enabled and that successful message is not visible
-        y.get('#submitBtn').should('be.disabled');
+        cy.get('#submitBtn').should('be.disabled');
         cy.get('#success_message').should('not.be.visible');
     })
 
