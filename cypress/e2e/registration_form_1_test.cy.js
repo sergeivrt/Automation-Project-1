@@ -109,7 +109,7 @@ describe('This is first test suite, Sergei Vort', () => {
         // All other fields should be entered correctly
         cy.get('#username').type('Something')
         cy.get('[data-testid="firstname"]').should('exist').type('John Doe');
-        cy.get('#lastname').type('John Doe');
+        cy.get('#firstName').type('John Doe');
         cy.get('#email').type('john.doe@example.com');
         cy.get('#password').type('securePassword');
         cy.get('#confirmPassword').type('securePassword');
