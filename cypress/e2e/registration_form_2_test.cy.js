@@ -16,6 +16,14 @@ describe('Section 1: Functional tests', () => {
         // Type confirmation password which is different from first password
         cy.get('input[name="password"]').type('Password123')
         cy.get('[name="confirm"]').type('Password123123')
+       
+        // type('{enter}') is clicking native enter button from thekeyboard
+        // for example, to click backspace use '{backspace}'
+        cy.get('[name="confirm"]').type('{enter}')
+
+
+        // Scroll to bottom of the page
+        cy.window().scrollTo('bottom')
 
         // Assert that submit button is not enabled
         cy.get('.submit_button').should('be.disabled')
@@ -24,7 +32,9 @@ describe('Section 1: Functional tests', () => {
         cy.get('#success_message').should('not.be.visible')
 
         // Assert that error message is visible
-        cy.get('#password_error_message').should('be.visible').should('contain', 'Passwords do not match!')
+         // Assert that password error message is visible, and message should contain 'Passwords do not match!
+         cy.get('#password_error_message').should('be.visible').should('contain', 'Passwords do not match!')
+       
 
         // Change the test, so the passwords would match
         cy.get('[name="confirm"]').type('Password123')
