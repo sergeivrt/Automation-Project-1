@@ -108,7 +108,8 @@ describe('This is first test suite, Sergei Vort', () => {
         // Fill in all fields except phone number
         // All other fields should be entered correctly
         cy.get('#username').type('Something')
-        cy.get('#name').type('John Doe');
+        cy.get('#firstname').type('John Doe');
+        cy.get('#lastname').type('John Doe');
         cy.get('#email').type('john.doe@example.com');
         cy.get('#password').type('securePassword');
         cy.get('#confirmPassword').type('securePassword');
