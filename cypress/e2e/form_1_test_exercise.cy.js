@@ -15,7 +15,7 @@ Tasks done during VS Code live demo:
 
 describe('This is the first test suite', () => {
     it('User can submit data only when valid mandatory values are added', () => {
-        cy.get('#username').type('Something');
+                cy.get('#username').type('Something');
         cy.get('[data-testid="phoneNumberTestId"]').type('10203040');
         cy.get('input[name="password"]').type('MyPass123');
         cy.get('[name="confirm"]').type('MyPass123');
