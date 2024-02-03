@@ -108,24 +108,23 @@ describe('This is first test suite, Sergei Vort', () => {
         // Fill in all fields except phone number
         // All other fields should be entered correctly
         cy.get('#username').type('Something')
-        cy.get('[data-testid="firstname"]').should('exist').type('John Doe');
-        cy.get('#firstName').type('John Doe');
-        cy.get('#email').type('john.doe@example.com');
-        cy.get('#password').type('securePassword');
-        cy.get('#confirmPassword').type('securePassword');
+        cy.get('#firstName').type('Jane Doe');
+        cy.get('#lastName').type('John Doe');
+        cy.get("input[name='password']").type('Password123')
+        cy.get('[name="confirm"]').type('Password123')
         // Assert that submit button is not enabled and that successful message is not visible
-        cy.get('#submitBtn').should('be.disabled');
+        cy.get('.submit_button').should('be.disabled');
         cy.get('#success_message').should('not.be.visible');
     })
 
     it('User cannot submit data when password and/or confirmation password is absent', () => {
         // Add test, similar to previous one with password field not filled in
         // All other fields should be entered correctly
-        cy.get('#name').type('Jane Doe');
-        cy.get('#email').type('jane.doe@example.com');
+        cy.get('#firstName').type('Jane Doe');
+        cy.get('#lastName').type('John Doe');
         cy.get('#phoneNumber').type('123456789');
         // Assert that submit button is not enabled and that successful message is not visible
-        cy.get('#submitBtn').should('be.disabled');
+        cy.get('.submit_button').should('be.disabled');
         cy.get('#success_message').should('not.be.visible');
     })
 
@@ -135,14 +134,14 @@ describe('This is first test suite, Sergei Vort', () => {
         cy.get('[data-testid="phoneNumberTestId"]').should('have.attr', 'type', 'number')
 
         // Add steps, when all fields are correctly filled in, except phone number
-        cy.get('#name').type('Bob Smith');
-        cy.get('#email').type('bob.smith@example.com');
-        cy.get('#password').type('strongPassword');
-        cy.get('#confirmPassword').type('strongPassword');
+        cy.get('#firstName').type('Jane Doe');
+        cy.get('#lastName').type('John Doe');
+        cy.get("input[name='password']").type('Password123')
+        cy.get('[name="confirm"]').type('Password123')
         // Try typing letters to phone number field
         cy.get('#phoneNumber').type('abc123');
         // Assert that submit button is not enabled and that successful message is not visible
-        cy.get('#submitBtn').should('be.disabled');
+        cy.get('.submit_button').should('be.disabled');
         cy.get('#success_message').should('not.be.visible');
     })
 })
