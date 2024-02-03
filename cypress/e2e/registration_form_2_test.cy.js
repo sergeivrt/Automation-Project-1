@@ -12,15 +12,11 @@ describe('Section 1: Functional tests', () => {
         // Add test steps for filling in only mandatory fields
         cy.get('#username').type('johnDoe')
         cy.get('[data-testid="phoneNumberTestId"]').type('10203040')
-
         // Type confirmation password which is different from first password
         cy.get('input[name="password"]').type('Password123')
         cy.get('[name="confirm"]').type('Password123123')
-
         // type('{enter}') is clicking native enter button from thekeyboard
-        // for example, to click backspace use '{backspace}'
         cy.get('[name="confirm"]').type('{enter}')
-
 
         // Scroll to bottom of the page
         cy.window().scrollTo('bottom')
@@ -30,26 +26,22 @@ describe('Section 1: Functional tests', () => {
 
         // Assert that successful message is not visible
         cy.get('#success_message').should('not.be.visible')
-
         // Assert that error message is visible
-        // Assert that password error message is visible, and message should contain 'Passwords do not match!
         cy.get('#password_error_message').should('be.visible').should('contain', 'Passwords do not match!')
-
-
-        // Change the test, so the passwords would match
-        // Scroll back to username input field
-        cy.get('#confirm').scrollIntoView()
+        // Scroll back to Password input field and Clear Password and Confirm fileds
+        cy.get('#password').scrollIntoView()
+        cy.get('#password').clear()
         cy.get('#confirm').clear()
+        // Change the test, so the passwords would match
+        cy.get('[name="password"]').type('Password123')
         cy.get('[name="confirm"]').type('Password123')
-        // type('{enter}') is clicking native enter button from thekeyboard
-        // for example, to click backspace use '{backspace}'
+        // type('{enter}') is clicking native enter button from the keyboard
         cy.get('[name="confirm"]').type('{enter}')
-
         // Add assertion, that error message is not visible anymore
         cy.get('#password_error_message').should('not.be.visible')
-
         // Add assertion, that submit button is now enabled
-       
+        cy.get('.submit_button').should('not.be.enabled')
+        cy.get('submit_button').click({force:true})
 
     })
 
