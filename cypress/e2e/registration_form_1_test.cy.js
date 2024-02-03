@@ -34,10 +34,16 @@ describe('This is first test suite, Sergei Vort', () => {
         cy.get('#input_error_message').should('not.be.visible')
         cy.get('#password_error_message').should('have.css', 'display', 'none')
 
+        // Assert that both input and password error messages are not shown different approach
+        cy.get('#input_error_message, #password_error_message').should('not.be.visible');
+
         // Assert that success message is visible
         // next 2 lines check exactly the same, but using different approach
         cy.get('#success_message').should('be.visible')
         cy.get('#success_message').should('have.css', 'display', 'block')
+
+        // Assert that success message is visible different approach
+        cy.get('#success_message').should('be.visible');
     });
 
 
@@ -99,14 +105,26 @@ describe('This is first test suite, Sergei Vort', () => {
 
     it('User cannot submit data when phone number is absent', () => {
         // Add test, similar to previous one with phone number field not filled in
+        // Fill in all fields except phone number
         // All other fields should be entered correctly
+        cy.get('#name').type('John Doe');
+        cy.get('#email').type('john.doe@example.com');
+        cy.get('#password').type('securePassword');
+        cy.get('#confirmPassword').type('securePassword');
         // Assert that submit button is not enabled and that successful message is not visible
+        y.get('#submitBtn').should('be.disabled');
+        cy.get('#success_message').should('not.be.visible');
     })
 
     it('User cannot submit data when password and/or confirmation password is absent', () => {
         // Add test, similar to previous one with password field not filled in
         // All other fields should be entered correctly
+        cy.get('#name').type('Jane Doe');
+        cy.get('#email').type('jane.doe@example.com');
+        cy.get('#phoneNumber').type('123456789');
         // Assert that submit button is not enabled and that successful message is not visible
+        cy.get('#submitBtn').should('be.disabled');
+        cy.get('#success_message').should('not.be.visible');
     })
 
     it('User cannot add letters to phone number', () => {
@@ -115,7 +133,14 @@ describe('This is first test suite, Sergei Vort', () => {
         cy.get('[data-testid="phoneNumberTestId"]').should('have.attr', 'type', 'number')
 
         // Add steps, when all fields are correctly filled in, except phone number
+        cy.get('#name').type('Bob Smith');
+        cy.get('#email').type('bob.smith@example.com');
+        cy.get('#password').type('strongPassword');
+        cy.get('#confirmPassword').type('strongPassword');
         // Try typing letters to phone number field
+        cy.get('#phoneNumber').type('abc123');
         // Assert that submit button is not enabled and that successful message is not visible
+        cy.get('#submitBtn').should('be.disabled');
+        cy.get('#success_message').should('not.be.visible');
     })
 })
