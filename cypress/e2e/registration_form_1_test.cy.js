@@ -34,16 +34,10 @@ describe('This is first test suite, Sergei Vort', () => {
         cy.get('#input_error_message').should('not.be.visible')
         cy.get('#password_error_message').should('have.css', 'display', 'none')
 
-        // Assert that both input and password error messages are not shown different approach
-        cy.get('#input_error_message, #password_error_message').should('not.be.visible');
-
         // Assert that success message is visible
         // next 2 lines check exactly the same, but using different approach
         cy.get('#success_message').should('be.visible')
         cy.get('#success_message').should('have.css', 'display', 'block')
-
-        // Assert that success message is visible different approach
-        cy.get('#success_message').should('be.visible');
     });
 
 
@@ -120,6 +114,7 @@ describe('This is first test suite, Sergei Vort', () => {
     it('User cannot submit data when password and/or confirmation password is absent', () => {
         // Add test, similar to previous one with password field not filled in
         // All other fields should be entered correctly
+        cy.get('#username').type('Something')
         cy.get('#firstName').type('Jane Doe');
         cy.get('#lastName').type('John Doe');
         cy.get('#phoneNumber').type('123456789');
