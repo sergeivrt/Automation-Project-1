@@ -87,7 +87,7 @@ describe('Section 1: Functional tests', () => {
         // Assert that successful message is not visible
         cy.get('#success_message').should('not.be.visible')
         // Assert that error message is visible
-        cy.get('#password_error_message').should('be.visible')
+        cy.get('#input_error_message').should('be.visible')
         cy.get('#success_message').should('be.visible')
 
         // example, how to use function, which fills in all mandatory data
