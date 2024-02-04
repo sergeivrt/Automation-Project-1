@@ -235,7 +235,7 @@ describe('Section 2: Visual tests', () => {
             cy.get('#animal').find('option').should('have.length', 6);
             cy.get('#animal').find('option').each(option => {
             cy.wrap(option).invoke('val').should('be.oneOf', ['dog', 'cat', 'snake', 'hippo', 'cow', 'horse']);
-            });
+            
         })
     })
 
