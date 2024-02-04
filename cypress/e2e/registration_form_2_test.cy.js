@@ -10,7 +10,7 @@ describe('Section 1: Functional tests', () => {
 
     it('User can use only same both first and validation passwords', () => {
         // Add test steps for filling in only mandatory fields
-        function inputValidData(username)
+        cy.get (function inputValidData(username))
         // Type confirmation password which is different from first password
         cy.get('input[name="password"]').type('Password123')
         cy.get('[name="confirm"]').type('Password123123')
