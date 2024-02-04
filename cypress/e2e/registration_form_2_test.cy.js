@@ -7,7 +7,6 @@ beforeEach(() => {
 /*
 Assignement 4: add content to the following tests
 */
-
 describe('Section 1: Functional tests', () => {
 
     it('User can use only same both first and validation passwords', () => {
@@ -37,7 +36,6 @@ describe('Section 1: Functional tests', () => {
         cy.get('#password_error_message').should('have.css', 'display', 'none')
         // Add assertion, that submit button is now enabled
         cy.get('.submit_button').should('be.enabled')
-
 
     })
 
@@ -69,12 +67,9 @@ describe('Section 1: Functional tests', () => {
         // Assert that after submitting the form system show successful message
         cy.get('#success_message').should('be.visible')
 
-        // example, how to use function, which fills in all mandatory data
-        // in order to see the content of the function, scroll to the end of the file
     })
 
     // Add at least 1 test for checking some mandatory field's absence
-
     it('User cant submit form with missing last name', () => {
         // Add test steps for filling in ONLY mandatory fields
         inputValidData('JonDoe')
@@ -89,8 +84,6 @@ describe('Section 1: Functional tests', () => {
         // Assert that error message is visible
         cy.get('#input_error_message').should('be.visible')
 
-        // example, how to use function, which fills in all mandatory data
-        // in order to see the content of the function, scroll to the end of the file
     })
 
 })
@@ -112,13 +105,11 @@ describe('Section 2: Visual tests', () => {
     it('My test for second picture', () => {
         // Create similar test for checking the second picture
         cy.log('Will check logo source and size')
-        cy.get('img').should('have.attr', 'src').should('include', 'cypress_logo')
+        cy.get('img[data-cy="cypress_logo"]').should('have.attr', 'src').should('include', 'cypress_logo')
         // get element and check its parameter height
         // it should be less than 116 and greater than 80
-        cy.get('img').invoke('height').should('be.lessThan', 178)
-            .and('be.greaterThan', 100)
-        cy.get('img').invoke('wdth').should('be.lessThan', 88)
-            .and('be.greaterThan', 60)
+        cy.get('img[data-cy="cypress_logo"]').invoke('height').should('be.lessThan', 116)
+            .and('be.greaterThan', 80)
     });
 
     it('Check navigation part', () => {
