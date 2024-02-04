@@ -112,7 +112,7 @@ describe('Section 2: Visual tests', () => {
             .and('be.greaterThan', 80)
     });
 
-    it('Check navigation part', () => {
+    it('Check navigation part 1', () => {
         cy.get('nav').children().should('have.length', 2)
 
         // Get navigation element, find siblings that contains h1 and check if it has Registration form in string
@@ -132,7 +132,7 @@ describe('Section 2: Visual tests', () => {
     })
 
     // Create similar test for checking the second link 
-    it('Check navigation part', () => {
+    it('Check navigation part 2', () => {
         cy.get('nav').children().should('have.length', 2)
 
         // Get navigation element, find siblings that contains h1 and check if it has Registration form in string
@@ -175,6 +175,29 @@ describe('Section 2: Visual tests', () => {
     })
 
     // Create test similar to previous one verifying check boxes
+    it('Check that check boxes list is correct and functioning ', () => {
+        // Array of found elements with given selector has 3 elements in total
+        cy.get('input[type="checkbox"]').should('have.length', 3)
+
+        // Verify text and functionality of every check boxes
+        cy.get('input[type="checkbox"]').eq(0).parent().contains('I have a bike');
+        cy.get('input[type="checkbox"]').eq(0).should('not.be.checked')
+        cy.get('input[type="checkbox"]').eq(0).check().should('be.checked')
+        cy.get('input[type="checkbox"]').eq(0).uncheck().should('not.be.checked')
+
+        cy.get('input[type="checkbox"]').eq(1).parent().contains('I have a car');
+        cy.get('input[type="checkbox"]').eq(1).should('not.be.checked')
+        cy.get('input[type="checkbox"]').eq(1).check().should('be.checked')
+        cy.get('input[type="checkbox"]').eq(1).uncheck().should('not.be.checked')
+
+        cy.get('input[type="checkbox"]').eq(2).parent().contains('I have a boat');
+        cy.get('input[type="checkbox"]').eq(2).should('not.be.checked')
+        cy.get('input[type="checkbox"]').eq(2).check().should('be.checked')
+        cy.get('input[type="checkbox"]').eq(2).uncheck().should('not.be.checked')
+
+
+    })
+
 
     it('Car dropdown is correct', () => {
         // Here is just an example how to explicitely create screenshot from the code
