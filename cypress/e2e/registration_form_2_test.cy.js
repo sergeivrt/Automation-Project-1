@@ -42,13 +42,14 @@ describe('Section 1: Functional tests', () => {
         // Add assertion, that error message is not visible anymore
         cy.get('#password_error_message').should('have.css', 'display', 'none')
 
-        // Assert that successful message is visible
-        //cy.get('#success_message').should('be.visible');
+
 
         // Add assertion, that submit button is now enabled
-        // cy.get('h2').contains('Password').click()
-        // cy.get('.submit_button').should('be.enabled')
-        // cy.get('.submit_button').click()
+        cy.get('h2').contains('Password').click()
+        cy.log('Before button assertion');
+        cy.get('.submit_button').should('be.enabled', { timeout: 10000 });
+        cy.log('After button assertion');
+        cy.get('.submit_button').click()
 
 
     })
@@ -73,7 +74,7 @@ describe('Section 1: Functional tests', () => {
 
     it('User can submit form with valid data and only mandatory fields added', () => {
         // Add test steps for filling in ONLY mandatory fields
-        
+
         // Assert that submit button is enabled
         // Assert that after submitting the form system shows successful message
 
