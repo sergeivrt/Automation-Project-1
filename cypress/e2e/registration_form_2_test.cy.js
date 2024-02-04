@@ -61,7 +61,11 @@ describe('Section 1: Functional tests', () => {
         // Add test steps for filling in ONLY mandatory fields
         inputValidData('JonDoe')
         // Assert that submit button is enabled
-        // Assert that after submitting the form system shows successful message
+        cy.get('h2').contains('Password').click()
+        cy.get('.submit_button').should('be.enabled')
+        cy.get('.submit_button').click()
+        // Assert that after submitting the form system show successful message
+        cy.get('#success_message').should('be.visible')
 
         // example, how to use function, which fills in all mandatory data
         // in order to see the content of the function, scroll to the end of the file
