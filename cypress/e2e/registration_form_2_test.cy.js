@@ -74,20 +74,26 @@ describe('Section 1: Functional tests', () => {
     })
 
     // Add at least 1 test for checking some mandatory field's absence
-    
-        // Add test steps for filling in ONLY mandatory fields
 
-
-    })
     it('User cant submit form without valid phone number ', () => {
-        inputValidData('JohnDoe')
+        // Add test steps for filling in ONLY mandatory fields
+        inputValidData('JonDoe')
+        // Empty Phone number field
         cy.get('[data-testid="phoneNumberTestId"]').scrollIntoView()
         cy.get('[data-testid="phoneNumberTestId"]').clear()
-        cy.get('h2').contains('Password').click() 
+        // Assert that submit button is enabled
+        cy.get('h2').contains('Password').click()
         cy.get('.submit_button').should('be.disabled')
+        // Assert that successful message is not visible
         cy.get('#success_message').should('not.be.visible')
-        cy.get('#input_error_message').should('be.visible')
-})
+        // Assert that error message is visible
+        cy.get('#password_error_message').should('be.visible')
+        cy.get('#success_message').should('be.visible')
+
+        // example, how to use function, which fills in all mandatory data
+        // in order to see the content of the function, scroll to the end of the file
+    })
+
 })
 
 /*
