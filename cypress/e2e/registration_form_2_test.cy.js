@@ -40,15 +40,25 @@ describe('Section 1: Functional tests', () => {
         // Add assertion, that error message is not visible anymore
         cy.get('#password_error_message').should('not.be.visible')
         // Add assertion, that submit button is now enabled
-        cy.get('.submit_button').should('not.be.enabled')
-        cy.get('submit_button').click({force:true})
+        cy.get('.submit_button').should('be.enabled')
+        
 
     })
 
     it('User can submit form with all fields added', () => {
         // Add test steps for filling in ALL fields
+        cy.get('#username').type('johnDoe')
+        cy.get('#email').type('validemail@yeap.com')
+        cy.get('[data-cy="name"]').type('John')
+        cy.get('#lastName').type('Doe')
+        cy.get('[data-testid="phoneNumberTestId"]').type('10203040')
+        cy.get('#password').type('MyPass')
+        cy.get('#confirm').type('MyPass')
+        cy.get('h2').contains('Password').click()
         // Assert that submit button is enabled
+        cy.get('.submit_button').should('be.enabled')
         // Assert that after submitting the form system show successful message
+        cy.get('#success_message').should('be.visible')
     })
 
     it('User can submit form with valid data and only mandatory fields added', () => {
