@@ -235,9 +235,9 @@ describe('Section 2: Visual tests', () => {
         cy.get('#animal').find('option').eq(5).should('have.text', 'Horse')
 
         // Advanced level how to check the content of the Animals dropdown
-        cy.get('#animalrs').find('option').then(options => {
+        cy.get('#animal').find('option').then(options => {
             const actual = [...options].map(option => option.value)
-            expect(actual).to.deep.eq(['Dog', 'Cat', 'Snake', 'Hippo', 'Cow', 'Horse'])
+            expect(actual).to.deep.eq(['dog', 'cat', 'snake', 'hippo', 'cow', 'horse'])
         })
     })
 
