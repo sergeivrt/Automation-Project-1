@@ -46,9 +46,7 @@ describe('Section 1: Functional tests', () => {
 
         // Add assertion, that submit button is now enabled
         cy.get('h2').contains('Password').click()
-        cy.log('Before button assertion');
         cy.get('.submit_button').should('be.enabled', { timeout: 10000 });
-        cy.log('After button assertion');
         cy.get('.submit_button').click()
 
 
