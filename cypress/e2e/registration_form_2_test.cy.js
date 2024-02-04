@@ -230,11 +230,13 @@ describe('Section 2: Visual tests', () => {
         cy.get('#animal').find('option').eq(4).should('have.text', 'Cow')
         cy.get('#animal').find('option').eq(5).should('have.text', 'Horse')
 
-        cy.get('#animal').find('option').should('have.length', 6)
-        // Advanced level how to check the content of the Animals dropdown
-            cy.get('#animal').find('option').should('have.length', 6);
-            cy.get('#animal').find('option').each(option => {
-            cy.wrap(option).invoke('val').should('be.oneOf', ['dog', 'cat', 'snake', 'hippo', 'cow', 'horse']);
+         // Verify the number of options in the animal dropdown
+         cy.get('#animal').children().should('have.length', 6);
+         cy.get('#animal').find('option').should('have.length', 6);
+         // Advanced level how to check the content of the Animal dropdown
+         cy.get('#animal').find('option').then(options => {
+             const actual = [...options].map(option => option.text);
+             expect(actual).to.deep.eq(['Dog','Cat','Snake','Hippo','Cow','Horse'])
             
         })
     })
