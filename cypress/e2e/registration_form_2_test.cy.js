@@ -159,7 +159,7 @@ describe('Section 2: Visual tests', () => {
 
 })
 
-function inputValidData('JohnDoe') {
+function inputValidData(JohnDoe) {
     cy.log('Username will be filled')
     cy.get('input[data-testid="user"]').type('JohnDoe')
     cy.get('#email').type('johndoe@xyz.com')
