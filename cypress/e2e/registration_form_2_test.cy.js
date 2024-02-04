@@ -1,3 +1,5 @@
+const { phone_number } = require("faker/lib/locales/az")
+
 beforeEach(() => {
     cy.visit('cypress/fixtures/registration_form_2.html')
 })
@@ -72,7 +74,20 @@ describe('Section 1: Functional tests', () => {
     })
 
     // Add at least 1 test for checking some mandatory field's absence
+    
+        // Add test steps for filling in ONLY mandatory fields
 
+
+    })
+    it('User cant submit form without valid phone number ', () => {
+        inputValidData('JohnDoe')
+        cy.get('[data-testid="phoneNumberTestId"]').scrollIntoView()
+        cy.get('[data-testid="phoneNumberTestId"]').clear()
+        cy.get('h2').contains('Password').click() 
+        cy.get('.submit_button').should('be.disabled')
+        cy.get('#success_message').should('not.be.visible')
+        cy.get('#input_error_message').should('be.visible')
+})
 })
 
 /*
