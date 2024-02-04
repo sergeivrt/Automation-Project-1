@@ -195,7 +195,6 @@ describe('Section 2: Visual tests', () => {
         cy.get('input[type="checkbox"]').eq(2).check().should('be.checked')
         cy.get('input[type="checkbox"]').eq(2).uncheck().should('not.be.checked')
 
-
     })
 
 
