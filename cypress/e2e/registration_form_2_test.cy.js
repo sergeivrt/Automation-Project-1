@@ -188,6 +188,14 @@ describe('Section 2: Visual tests', () => {
         cy.get('input[type="checkbox"]').eq(2).check().should('be.checked')
         cy.get('input[type="checkbox"]').eq(2).uncheck().should('not.be.checked')
 
+        // Independent behavior test
+        cy.get('input[type="checkbox"]').eq(0).check().should('be.checked')
+        cy.get('input[type="checkbox"]').eq(1).check().should('be.checked')
+        cy.get('input[type="checkbox"]').eq(2).check().should('be.checked')
+
+        cy.get('input[type="checkbox"]').eq(1).should('be.checked')
+        cy.get('input[type="checkbox"]').eq(2).uncheck().should('not.be.checked')
+        cy.get('input[type="checkbox"]').eq(0).should('be.checked')
     })
 
 
@@ -196,6 +204,7 @@ describe('Section 2: Visual tests', () => {
         // Select second element and create screenshot for this area or full page
         cy.get('#cars').select(1).screenshot('Cars drop-down')
         cy.screenshot('Full page screenshot')
+        cy.screenshot('cropped screenshot', { clip: { x: 1, y: 1, width: 100, height: 100 } })
 
         // Here are given different solutions how to get the length of array of elements in Cars dropdown
         // Next 2 lines of code do exactly the same!
@@ -219,7 +228,8 @@ describe('Section 2: Visual tests', () => {
     it('Animal dropdown is correct', () => {
         // Select second element and create screenshot for this area or full page
         cy.get('#animal').select(1).screenshot('Animal drop-down')
-        cy.screenshot('Full page screenshot after selection')
+        cy.screenshot('Full page screenshot')
+        cy.screenshot('cropped screenshot', { clip: { x: 1, y: 1, width: 150, height: 150 } })
 
         cy.get('#animal').children().should('have.length', 6)
         // Check  that  elements in the dropdown menu are correct
@@ -230,14 +240,14 @@ describe('Section 2: Visual tests', () => {
         cy.get('#animal').find('option').eq(4).should('have.text', 'Cow')
         cy.get('#animal').find('option').eq(5).should('have.text', 'Horse')
 
-         // Verify the number of options in the animal dropdown
-         cy.get('#animal').children().should('have.length', 6);
-         cy.get('#animal').find('option').should('have.length', 6);
-         // Advanced level how to check the content of the Animal dropdown
-         cy.get('#animal').find('option').then(options => {
-             const actual = [...options].map(option => option.text);
-             expect(actual).to.deep.eq(['Dog','Cat','Snake','Hippo','Cow','Horse'])
-            
+        // Verify the number of options in the animal dropdown
+        cy.get('#animal').children().should('have.length', 6);
+        cy.get('#animal').find('option').should('have.length', 6);
+        // Advanced level how to check the content of the Animal dropdown
+        cy.get('#animal').find('option').then(options => {
+            const actual = [...options].map(option => option.text);
+            expect(actual).to.deep.eq(['Dog', 'Cat', 'Snake', 'Hippo', 'Cow', 'Horse'])
+
         })
     })
 
