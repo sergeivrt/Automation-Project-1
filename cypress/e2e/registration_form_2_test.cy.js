@@ -97,7 +97,6 @@ describe('Section 1: Functional tests', () => {
 
     // Add at least 1 test for checking some mandatory field's absence
 
-})
 
 /*
 Assignement 5: create more visual tests
