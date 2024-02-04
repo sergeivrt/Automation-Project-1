@@ -15,12 +15,10 @@ describe('Section 1: Functional tests', () => {
         cy.get('[data-cy="name"]').type('John')
         cy.get('#lastName').type('Doe')
         cy.get('[data-testid="phoneNumberTestId"]').type('10203040')
-
         // Type confirmation password which is different from first password
         cy.get('input[name="password"]').type('Pass123')
         cy.get('[name="confirm"]').type('Pass123123')
         cy.get('h2').contains('Password').click()
-
         // Assert that submit button is not enabled
         cy.get('.submit_button').should('be.disabled')
         // Assert that successful message is not visible
@@ -33,10 +31,8 @@ describe('Section 1: Functional tests', () => {
         // Change the test, so the passwords would match
         cy.get('[name="confirm"]').type('Pass123')
         cy.get('h2').contains('Password').click()
-
         // Add assertion, that error message is not visible anymore
         cy.get('#password_error_message').should('have.css', 'display', 'none')
-
         // Add assertion, that submit button is now enabled
         cy.get('.submit_button').should('be.enabled')
 
@@ -63,13 +59,12 @@ describe('Section 1: Functional tests', () => {
 
     it('User can submit form with valid data and only mandatory fields added', () => {
         // Add test steps for filling in ONLY mandatory fields
-
+        inputValidData('JonDoe')
         // Assert that submit button is enabled
         // Assert that after submitting the form system shows successful message
 
         // example, how to use function, which fills in all mandatory data
         // in order to see the content of the function, scroll to the end of the file
-        inputValidData('johnDoe')
     })
 
     // Add at least 1 test for checking some mandatory field's absence
@@ -164,14 +159,14 @@ describe('Section 2: Visual tests', () => {
 
 })
 
-function inputValidData(username) {
+function inputValidData('JohnDoe') {
     cy.log('Username will be filled')
-    cy.get('input[data-testid="user"]').type(username)
-    cy.get('#email').type('validemail@yeap.com')
+    cy.get('input[data-testid="user"]').type('JohnDoe')
+    cy.get('#email').type('johndoe@xyz.com')
     cy.get('[data-cy="name"]').type('John')
     cy.get('#lastName').type('Doe')
     cy.get('[data-testid="phoneNumberTestId"]').type('10203040')
-    cy.get('#password').type('MyPass')
-    cy.get('#confirm').type('MyPass')
+    cy.get('#password').type('MyPass123')
+    cy.get('#confirm').type('MyPass123')
     cy.get('h2').contains('Password').click()
 }
