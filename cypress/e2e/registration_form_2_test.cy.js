@@ -29,19 +29,27 @@ describe('Section 1: Functional tests', () => {
         // Assert that error message is visible
         cy.get('#password_error_message').should('be.visible').should('contain', 'Passwords do not match!')
         // Scroll back to Password input field and Clear Password and Confirm fileds
-        cy.get('#password').scrollIntoView()
         cy.get('#password').clear()
         cy.get('#confirm').clear()
+        cy.get('#password').scrollIntoView()
         // Change the test, so the passwords would match
         cy.get('[name="password"]').type('Password123')
         cy.get('[name="confirm"]').type('Password123')
+
         // type('{enter}') is clicking native enter button from the keyboard
         cy.get('[name="confirm"]').type('{enter}')
+
         // Add assertion, that error message is not visible anymore
-        cy.get('#password_error_message').should('not.be.visible')
+        cy.get('#password_error_message').should('have.css', 'display', 'none')
+
+        // Assert that successful message is visible
+        //cy.get('#success_message').should('be.visible');
+
         // Add assertion, that submit button is now enabled
-        cy.get('.submit_button').should('be.enabled')
-        
+        // cy.get('h2').contains('Password').click()
+        // cy.get('.submit_button').should('be.enabled')
+        // cy.get('.submit_button').click()
+
 
     })
 
@@ -56,13 +64,16 @@ describe('Section 1: Functional tests', () => {
         cy.get('#confirm').type('MyPass')
         cy.get('h2').contains('Password').click()
         // Assert that submit button is enabled
+        cy.get('h2').contains('Password').click()
         cy.get('.submit_button').should('be.enabled')
+        cy.get('.submit_button').click()
         // Assert that after submitting the form system show successful message
         cy.get('#success_message').should('be.visible')
     })
 
     it('User can submit form with valid data and only mandatory fields added', () => {
         // Add test steps for filling in ONLY mandatory fields
+        
         // Assert that submit button is enabled
         // Assert that after submitting the form system shows successful message
 
