@@ -37,7 +37,7 @@ describe('Section 1: Functional tests', () => {
         cy.get('[name="confirm"]').type('Password123')
 
         // type('{enter}') is clicking native enter button from the keyboard
-        cy.get('[name="confirm"]').type('{enter}')
+        //cy.get('[name="confirm"]').type('{enter}')
 
         // Add assertion, that error message is not visible anymore
         cy.get('#password_error_message').should('have.css', 'display', 'none')
@@ -74,9 +74,21 @@ describe('Section 1: Functional tests', () => {
 
     it('User can submit form with valid data and only mandatory fields added', () => {
         // Add test steps for filling in ONLY mandatory fields
-
+        cy.get('#username').type('johnDoe')
+        cy.get('#email').type('validemail@yeap.com')
+        cy.get('[data-cy="name"]').type('John')
+        cy.get('#lastName').type('Doe')
+        cy.get('[data-testid="phoneNumberTestId"]').type('10203040')
+        cy.get('#password').type('MyPass')
+        cy.get('#confirm').type('MyPass')
+        cy.get('h2').contains('Password').click()
         // Assert that submit button is enabled
-        // Assert that after submitting the form system shows successful message
+        cy.get('h2').contains('Password').click()
+        cy.get('.submit_button').should('be.enabled')
+        cy.get('.submit_button').click()
+        // Assert that after submitting the form system show successful message
+        cy.get('#success_message').should('be.visible')
+    })
 
         // example, how to use function, which fills in all mandatory data
         // in order to see the content of the function, scroll to the end of the file
