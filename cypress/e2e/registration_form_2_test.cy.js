@@ -75,7 +75,7 @@ describe('Section 1: Functional tests', () => {
 
     // Add at least 1 test for checking some mandatory field's absence
 
-    it('User cant submit form with missing Last Name', () => {
+    it('User cant submit form with missing last name', () => {
         // Add test steps for filling in ONLY mandatory fields
         inputValidData('JonDoe')
         // Empty Phone number field
@@ -111,6 +111,14 @@ describe('Section 2: Visual tests', () => {
 
     it('My test for second picture', () => {
         // Create similar test for checking the second picture
+        cy.log('Will check logo source and size')
+        cy.get('img').should('have.attr', 'src').should('include', 'cypress_logo')
+        // get element and check its parameter height
+        // it should be less than 116 and greater than 80
+        cy.get('img').invoke('height').should('be.lessThan', 178)
+            .and('be.greaterThan', 100)
+        cy.get('img').invoke('wdth').should('be.lessThan', 88)
+            .and('be.greaterThan', 60)
     });
 
     it('Check navigation part', () => {
