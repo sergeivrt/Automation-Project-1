@@ -12,7 +12,7 @@ describe('Section 1: Functional tests', () => {
     it('User can use only same both first and validation passwords', () => {
         // Add test steps for filling in only mandatory fields
         cy.get('#username').type('johnDoe')
-        cy.get('#email').type('validemail@yeap.com')
+        cy.get('#email').type('johndoe@xyz.com')
         cy.get('[data-cy="name"]').type('John')
         cy.get('#lastName').type('Doe')
         cy.get('[data-testid="phoneNumberTestId"]').type('10203040')
@@ -41,14 +41,7 @@ describe('Section 1: Functional tests', () => {
 
     it('User can submit form with all fields added', () => {
         // Add test steps for filling in ALL fields
-        cy.get('#username').type('johnDoe')
-        cy.get('#email').type('validemail@yeap.com')
-        cy.get('[data-cy="name"]').type('John')
-        cy.get('#lastName').type('Doe')
-        cy.get('[data-testid="phoneNumberTestId"]').type('10203040')
-        cy.get('#password').type('MyPass')
-        cy.get('#confirm').type('MyPass')
-        cy.get('h2').contains('Password').click()
+        inputValidData('JonDoe')
         // Assert that submit button is enabled
         cy.get('h2').contains('Password').click()
         cy.get('.submit_button').should('be.enabled')
@@ -180,7 +173,7 @@ describe('Section 2: Visual tests', () => {
         cy.get('input[type="checkbox"]').should('have.length', 3)
 
         // Verify text and functionality of every check boxes
-        cy.get('input[type="checkbox"]').eq(0).parent().contains('I have a bike');
+        cy.get('input[type="checkbox"]').eq(0).next().should('have.text', 'I have a bike');
         cy.get('input[type="checkbox"]').eq(0).should('not.be.checked')
         cy.get('input[type="checkbox"]').eq(0).check().should('be.checked')
         cy.get('input[type="checkbox"]').eq(0).uncheck().should('not.be.checked')
