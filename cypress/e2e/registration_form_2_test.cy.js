@@ -10,44 +10,35 @@ describe('Section 1: Functional tests', () => {
 
     it('User can use only same both first and validation passwords', () => {
         // Add test steps for filling in only mandatory fields
-        cy.get (function inputValidData(username))
-        // Type confirmation password which is different from first password
-        cy.get('input[name="password"]').type('Password123')
-        cy.get('[name="confirm"]').type('Password123123')
-        // type('{enter}') is clicking native enter button from thekeyboard
-        cy.get('[name="confirm"]').type('{enter}')
+        cy.get('#username').type('johnDoe')
+        cy.get('#email').type('validemail@yeap.com')
+        cy.get('[data-cy="name"]').type('John')
+        cy.get('#lastName').type('Doe')
+        cy.get('[data-testid="phoneNumberTestId"]').type('10203040')
 
-        // Scroll to bottom of the page
-        cy.window().scrollTo('bottom')
+        // Type confirmation password which is different from first password
+        cy.get('input[name="password"]').type('Pass123')
+        cy.get('[name="confirm"]').type('Pass123123')
+        cy.get('h2').contains('Password').click()
 
         // Assert that submit button is not enabled
         cy.get('.submit_button').should('be.disabled')
-
         // Assert that successful message is not visible
         cy.get('#success_message').should('not.be.visible')
         // Assert that error message is visible
         cy.get('#password_error_message').should('be.visible').should('contain', 'Passwords do not match!')
         // Scroll back to Password input field and Clear Password and Confirm fileds
-        cy.get('#password').clear()
+        cy.get('#confirm').scrollIntoView()
         cy.get('#confirm').clear()
-        cy.get('#password').scrollIntoView()
         // Change the test, so the passwords would match
-        cy.get('[name="password"]').type('Password123')
-        cy.get('[name="confirm"]').type('Password123')
-
-        // type('{enter}') is clicking native enter button from the keyboard
-        cy.get('[name="confirm"]').type('{enter}')
+        cy.get('[name="confirm"]').type('Pass123')
+        cy.get('h2').contains('Password').click()
 
         // Add assertion, that error message is not visible anymore
         cy.get('#password_error_message').should('have.css', 'display', 'none')
 
-        // Assert that successful message is visible
-        //cy.get('#success_message').should('be.visible');
-
         // Add assertion, that submit button is now enabled
-        // cy.get('h2').contains('Password').click()
-        // cy.get('.submit_button').should('be.enabled')
-        // cy.get('.submit_button').click()
+        cy.get('.submit_button').should('be.enabled')
 
 
     })
@@ -72,7 +63,7 @@ describe('Section 1: Functional tests', () => {
 
     it('User can submit form with valid data and only mandatory fields added', () => {
         // Add test steps for filling in ONLY mandatory fields
-        
+
         // Assert that submit button is enabled
         // Assert that after submitting the form system shows successful message
 
