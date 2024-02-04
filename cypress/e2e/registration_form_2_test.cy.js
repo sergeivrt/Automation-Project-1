@@ -75,12 +75,12 @@ describe('Section 1: Functional tests', () => {
 
     // Add at least 1 test for checking some mandatory field's absence
 
-    it('User cant submit form without valid phone number ', () => {
+    it('User cant submit form with missing Last Name', () => {
         // Add test steps for filling in ONLY mandatory fields
         inputValidData('JonDoe')
         // Empty Phone number field
-        cy.get('[data-testid="phoneNumberTestId"]').scrollIntoView()
-        cy.get('[data-testid="phoneNumberTestId"]').clear()
+        cy.get('#lastName').scrollIntoView()
+        cy.get('#lastName').clear()
         // Assert that submit button is enabled
         cy.get('h2').contains('Password').click()
         cy.get('.submit_button').should('be.disabled')
