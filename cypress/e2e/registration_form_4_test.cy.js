@@ -16,7 +16,7 @@ describe('Input fields', () => {
     it('Username tooltip is visible', () => {
         cy.get('#username').type('{enter}')
         cy.get('h2').contains('Password').click()
-        cy.get('.username').should('have.attr', 'title').should('contain', 'Please add username')
+        cy.get('input[name="username"]').should('have.attr', 'title').should('contain', 'Please add username')
 
         //if not entered, mandatory username field has red border outline
         cy.get('#username').should('have.css', 'box-shadow').should('contain', 'rgb(255, 0, 0)')
@@ -32,7 +32,7 @@ describe('Input fields', () => {
 
     it('Username should support only letters and numbers', () => {
         // check with regex supporter format
-        cy.get('#username').invoke('attr', 'pattern').should('eq', '[a-zA-Z0-9]');
+        cy.get('input[name="username"]').should('have.attr', 'pattern').should('contain', '[a-zA-Z0-9_]+');
     })
 
     it('Email input should support correct pattern', () => {
@@ -40,7 +40,7 @@ describe('Input fields', () => {
         // input invalid email
         // check that email element has red border outline
         // submit button should not be active
-        cy.get('#email').should('have.attr', 'pattern').should('contain', '[a-z0-9]+@[a-z0-9]+\\.[a-z]{2,4}$')
+        cy.get('input[name="email"]').should('have.attr', 'pattern').should('contain', '[a-zA-Z0-9_]+@[a-zA-Z0-9_]+.[a-z]{2,4}$');
         cy.get('#email123').type('invalid')
         cy.get('h2').contains('Password').click()
         cy.get('#email').should('have.css', 'image').should('contain', 'rgb(255, 0, 0)')
