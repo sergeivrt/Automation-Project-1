@@ -32,7 +32,7 @@ describe('Input fields', () => {
 
     it('Username should support only letters and numbers', () => {
         // check with regex supporter format
-        cy.get('#username').should('have.attr', 'pattern', '[a-zA-Z0-9_]')
+        cy.get('#username').invoke('attr', 'pattern').should('eq', '[a-zA-Z0-9]');
     })
 
     it('Email input should support correct pattern', () => {
