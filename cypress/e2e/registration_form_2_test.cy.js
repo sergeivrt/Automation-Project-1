@@ -46,6 +46,11 @@ describe('Section 1: Functional tests', () => {
         cy.get('h2').contains('Password').click()
         cy.get('.submit_button').should('be.enabled')
         cy.get('.submit_button').click()
+        cy.get('#htmlFavLanguage').check();
+        cy.get('#vehicle1').check();
+        cy.get('#cars').select('Saab');
+        cy.get('#animal').select('Snake');
+        cy.get('.submit_button').click();
         // Assert that after submitting the form system show successful message
         cy.get('#success_message').should('be.visible')
     })
