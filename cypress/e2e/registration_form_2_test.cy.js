@@ -101,7 +101,7 @@ describe('Section 2: Visual tests', () => {
         cy.get('img[data-cy="cypress_logo"]').should('have.attr', 'src').should('include', 'cypress_logo')
         // get element and check its parameter height
         // it should be less than 116 and greater than 80
-        cy.get('img[data-cy="cypress_logo"]').invoke('height').should('be.lessThan', 116)
+        cy.get('img').eq(1).invoke('height').should('be.lessThan', 116)
             .and('be.greaterThan', 80)
     });
 
@@ -203,7 +203,10 @@ describe('Section 2: Visual tests', () => {
         // Here is just an example how to explicitely create screenshot from the code
         // Select second element and create screenshot for this area or full page
         cy.get('#cars').select(1).screenshot('Cars drop-down')
+        cy.get('#cars').select(2).screenshot('Cars drop-down')
+        cy.get('#cars').select(0).screenshot('Cars drop-down')
         cy.screenshot('Full page screenshot')
+
         cy.screenshot('cropped screenshot', { clip: { x: 1, y: 1, width: 100, height: 100 } })
 
         // Here are given different solutions how to get the length of array of elements in Cars dropdown
@@ -227,7 +230,12 @@ describe('Section 2: Visual tests', () => {
     // Create test similar to previous one
     it('Animal dropdown is correct', () => {
         // Select second element and create screenshot for this area or full page
+        cy.get('#animal').select(0).screenshot('Animal drop-down')
         cy.get('#animal').select(1).screenshot('Animal drop-down')
+        cy.get('#animal').select(2).screenshot('Animal drop-down')
+        cy.get('#animal').select(3).screenshot('Animal drop-down')
+        cy.get('#animal').select(4).screenshot('Animal drop-down')
+        cy.get('#animal').select(5).screenshot('Animal drop-down')
         cy.screenshot('Full page screenshot')
         cy.screenshot('cropped screenshot', { clip: { x: 1, y: 1, width: 150, height: 150 } })
 
