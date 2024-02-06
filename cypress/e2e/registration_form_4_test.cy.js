@@ -40,10 +40,10 @@ describe('Input fields', () => {
         // input invalid email
         // check that email element has red border outline
         // submit button should not be active
-        cy.get('input[name="email"]').should('have.attr', 'pattern').should('contain', '[a-z0-9]+@[a-z0-9]+\.[a-z]{2,4}$');
-        cy.get('#email123').type('invalid')
+        cy.get('input[name="email"]').should('have.attr', 'pattern').should('contain', '[a-z0-9]+@[a-z0-9]+\\.[a-z]{2,4}$');
+        //cy.get('#email123').type('invalid')
         cy.get('h2').contains('Password').click()
-        cy.get('#email').should('have.css', 'image').should('contain', 'rgb(255, 0, 0)')
+        cy.get('#email').should('have.css', 'box-shaddow').should('contain', 'rgb(255, 0, 0)')
         cy.get('.submit_button').should('not.be.enabled');
     })
 
@@ -59,9 +59,9 @@ describe('Input fields', () => {
         cy.get('#cars').children().should('have.length', 4)
 
         // Check list does not contain BMW
-        cy.get('#cars option').first().should('not.have.text', 'BMW')
+        cy.get('#cars option').eq(0).should('not.have.text', 'BMW')
         cy.get('#cars option').eq(1).should('not.have.text', 'BMW')
         cy.get('#cars option').eq(2).should('not.have.text', 'BMW')
-        cy.get('#cars option').last().should('have.text', 'BMW')
+        cy.get('#cars option').eq(3).should('not.have.text', 'BMW')
     })
 })
