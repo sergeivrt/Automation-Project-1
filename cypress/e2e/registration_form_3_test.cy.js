@@ -6,6 +6,7 @@ beforeEach(() => {
 BONUS TASK: add visual tests for registration form 3
 Task list:
 * Create test suite for visual tests for registration form 3 (describe block)
+
 * Create tests to verify visual parts of the page:
     * radio buttons and its content
     * dropdown and dependencies between 2 dropdowns:
