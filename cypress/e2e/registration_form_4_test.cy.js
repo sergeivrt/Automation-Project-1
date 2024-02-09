@@ -40,17 +40,19 @@ describe('Input fields', () => {
         // input invalid email
         // check that email element has red border outline
         // submit button should not be active
+        cy.get('#email').type('johndoexyzcom')
         cy.get('input[name="email"]').should('have.attr', 'pattern').should('contain', '[a-z0-9]+@[a-z0-9]+\\.[a-z]{2,4}$');
-        cy.get('#email123').type('invalid')
+        cy.get('#email').type('invalid')
         cy.get('h2').contains('Password').click()
-        cy.get('#email').should('have.css', 'box-shaddow').should('contain', 'rgb(255, 0, 0)')
-        cy.get('.submit_button').should('not.be.enabled');
+        cy.get('#email').should('have.css', 'box-shadow').should('contain', 'rgb(255, 0, 0)')
+        cy.get('.submit_button').should('be.disabled');
     })
 
     it('User cannot submit empty registration form', () => {
         // Do not add any information
         // Check that submit button is not enabled
-        cy.get('.submit_button').should('not.be.visible');
+        cy.get('h2').contains('Password').click()
+        cy.get('.submit_button').should('be.disabled');
     })
 
     it('BMW should not be listed in the list of the cars', () => {
