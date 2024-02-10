@@ -130,13 +130,22 @@ it('should assert absence of mandatory fields', () => {
 // Test case to upload a file
 
 
+// Test case to upload a file
 it('should upload a file', () => {
     // Define the file path
-    const filePath = 'upload_file.html';
-
-    // Upload the file
-    cy.get('input[type="file"]').attachFile(filePath);
+    const filePath = 'cypress/fixtures/upload_file.html'; // Update with the actual file path
+    
+     // Click on the file input element to trigger file selection
+     cy.get('input[type="file"]').click();
+    
+     // Upload the file
+     cy.get('input[type="file"]').attachFile(filePath);
+     
+     // Click on the "Submit file" button
+     cy.contains('Submit file').click();
+     
 });
+
 
 // Function to input valid data
 function inputValidData(data) {
