@@ -142,7 +142,7 @@ import 'cypress-file-upload';
 // Test case to upload a file
 it('should upload a file', () => {
     // Define the file path
-    const filePath = 'cypress/fixtures/upload_file.html';
+    const filePath = 'upload_file.html';
 
     // Upload the file
     cy.get('input[type="file"]').attachFile(filePath);
