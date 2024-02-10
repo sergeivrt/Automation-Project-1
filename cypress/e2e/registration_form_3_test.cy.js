@@ -132,8 +132,12 @@ it('should assert absence of mandatory fields', () => {
     cy.get('#emailAlert').should('contain', 'Email is required')
 });
   
+// Test case to upload a file
+    // Define the file path
+    const filePath = 'sergeivrt/Automation-Project-1/cypress/fixtures/upload_file.html';
 // Importing the cypress-file-upload plugin
 import 'cypress-file-upload';
+
 
 // Test case to upload a file
 it('should upload a file', () => {
@@ -169,6 +173,3 @@ const JohnDoe = {
     birthday: '2000-01-01',
     acceptPrivacyPolicy: true
 };
-
-// Call the function with valid data
-inputValidData(JohnDoe);
