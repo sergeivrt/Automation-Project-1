@@ -97,11 +97,7 @@ it('should fill in all fields and assert values', () => {
     // Fill in all fields
     cy.get('#name').type('John Doe')
     cy.get('input[name="email"]').type('john@example.com')
-    
-    // Select the country by its text
     cy.get('#country').select('Spain')
-  
-    // Select Madrid from the city dropdown
     cy.get('#city').select('Madrid')
     
     // Fill in other fields
@@ -121,7 +117,6 @@ it('should fill in all fields and assert values', () => {
     cy.get('input[type="checkbox"]').should('be.checked')
 })
 
-
 // Test case to check absence of mandatory fields
 it('should assert absence of mandatory fields', () => {
     // Call the function to check absence of mandatory fields
@@ -133,13 +128,8 @@ it('should assert absence of mandatory fields', () => {
 });
   
 // Test case to upload a file
-    // Define the file path
-    const filePath = 'sergeivrt/Automation-Project-1/cypress/fixtures/upload_file.html';
-// Importing the cypress-file-upload plugin
-import 'cypress-file-upload';
 
 
-// Test case to upload a file
 it('should upload a file', () => {
     // Define the file path
     const filePath = 'upload_file.html';
