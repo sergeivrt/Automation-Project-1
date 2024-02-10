@@ -17,17 +17,6 @@ Task list:
     * email format
  */
 
-
-/*
-BONUS TASK: add functional tests for registration form 3
-Task list:
-* Create second test suite for functional tests
-* Create tests to verify logic of the page:
-    * all fields are filled in + corresponding assertions
-    * only mandatory fields are filled in + corresponding assertions
-    * mandatory fields are absent + corresponding assertions (try using function)
-    * add file functionlity(google yourself for solution!)
- */
 it('Check that radio button list is correct and functional', () => {
     // Array of found elements with given selector has 4 elements in total
     cy.get('input[type="radio"]').should('have.length', 4)
@@ -90,4 +79,38 @@ it('should test dropdowns and their dependencies', () => {
     // Enter valid email format and verify absence of error message
     cy.get('input[name="email"]').clear().type('validemail@example.com')
     cy.get('#emailAlert').should('not.exist')
+  })
+
+
+  /*
+BONUS TASK: add functional tests for registration form 3
+Task list:
+* Create second test suite for functional tests
+* Create tests to verify logic of the page:
+    * all fields are filled in + corresponding assertions
+    * only mandatory fields are filled in + corresponding assertions
+    * mandatory fields are absent + corresponding assertions (try using function)
+    * add file functionlity(google yourself for solution!)
+ */
+
+it('should fill in all fields and assert values', () => {
+    // Fill in all fields
+    cy.get('#name').type('John Doe')
+    cy.get('input[name="email"]').type('john@example.com')
+    cy.get('#country').select('Spain')
+    cy.get('#city').select('Madrid')
+    cy.get('input[type="date"]').type('2024-02-10')
+    cy.get('input[name="freq"]').check('Daily')
+    cy.get('input[name="birthday"]').type('2000-01-01')
+    cy.get('input[type="checkbox"]').check()
+
+    // Assert values
+    cy.get('#name').should('have.value', 'John Doe')
+    cy.get('input[name="email"]').should('have.value', 'john@example.com')
+    cy.get('#country').should('have.value', 'Spain')
+    cy.get('#city').should('have.value', 'Madrid')
+    cy.get('input[type="date"]').should('have.value', '2024-02-10')
+    cy.get('input[name="freq"][value="Daily"]').should('be.checked')
+    cy.get('input[name="birthday"]').should('have.value', '2000-01-01')
+    cy.get('input[type="checkbox"]').should('be.checked')
   })
