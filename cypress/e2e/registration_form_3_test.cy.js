@@ -132,17 +132,19 @@ it('should assert absence of mandatory fields', () => {
     cy.get('#emailAlert').should('contain', 'Email is required')
 });
   
-// Test case to upload a file
+// Importing the cypress-file-upload plugin
 import 'cypress-file-upload';
+
+// Test case to upload a file
 it('should upload a file', () => {
     // Define the file path
-    const filePath = 'sergeivrt/Automation-Project-1/cypress/fixtures/upload_file.html';
+    const filePath = 'cypress/fixtures/upload_file.html';
 
     // Upload the file
     cy.get('input[type="file"]').attachFile(filePath);
 });
 
-
+// Function to input valid data
 function inputValidData(data) {
     cy.get('#name').type(data.name);
     cy.get('input[name="email"]').type(data.email);
@@ -156,7 +158,7 @@ function inputValidData(data) {
     }
 }
 
-// Usage
+// Usage of the inputValidData function
 const JohnDoe = {
     name: 'John Doe',
     email: 'john@example.com',
@@ -168,3 +170,5 @@ const JohnDoe = {
     acceptPrivacyPolicy: true
 };
 
+// Call the function with valid data
+inputValidData(JohnDoe);
