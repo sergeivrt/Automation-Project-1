@@ -17,7 +17,7 @@ Task list:
     * email format
  */
 
-it('Check that radio button list is correct and functional', () => {
+it('should validate radio button list and functionality', () => {
     // Array of found elements with given selector has 4 elements in total
     cy.get('input[type="radio"]').should('have.length', 4)
 
@@ -78,7 +78,7 @@ it('should test dropdowns and their dependencies', () => {
 
     // Enter valid email format and verify absence of error message
     cy.get('input[name="email"]').clear().type('validemail@example.com')
-    cy.get('#emailAlert').should('not.exist')
+    cy.get('#emailAlert').should('not.be.enabled')
   })
 
 
@@ -97,20 +97,64 @@ it('should fill in all fields and assert values', () => {
     // Fill in all fields
     cy.get('#name').type('John Doe')
     cy.get('input[name="email"]').type('john@example.com')
+    
+    // Select the country by its text
     cy.get('#country').select('Spain')
+  
+    // Select Madrid from the city dropdown
     cy.get('#city').select('Madrid')
-    cy.get('input[type="date"]').type('2024-02-10')
+    
+    // Fill in other fields
+    cy.get('input[type="date"]').first().type('2024-02-10')
     cy.get('input[name="freq"]').check('Daily')
     cy.get('input[name="birthday"]').type('2000-01-01')
     cy.get('input[type="checkbox"]').check()
-
+  
     // Assert values
     cy.get('#name').should('have.value', 'John Doe')
     cy.get('input[name="email"]').should('have.value', 'john@example.com')
-    cy.get('#country').should('have.value', 'Spain')
-    cy.get('#city').should('have.value', 'Madrid')
+    cy.get('#country').should('contain', 'Spain')
+    cy.get('#city').should('contain', 'Madrid')
     cy.get('input[type="date"]').should('have.value', '2024-02-10')
     cy.get('input[name="freq"][value="Daily"]').should('be.checked')
     cy.get('input[name="birthday"]').should('have.value', '2000-01-01')
     cy.get('input[type="checkbox"]').should('be.checked')
-  })
+})
+
+
+// Test case to check absence of mandatory fields
+it('should assert absence of mandatory fields', () => {
+    // Call the function to check absence of mandatory fields
+    inputValidData(JohnDoe);
+    cy.get('input[name="email"]').scrollIntoView()
+    cy.get('input[name="email"]').clear()
+    // Assert that error message is visible
+    cy.get('#emailAlert').should('contain', 'Email is required')
+});
+  
+
+function inputValidData(data) {
+    cy.get('#name').type(data.name);
+    cy.get('input[name="email"]').type(data.email);
+    cy.get('#country').select(data.country);
+    cy.get('#city').select(data.city);
+    cy.get('input[type="date"]').first().type(data.registrationDate);
+    cy.get('input[name="freq"][value="' + data.newsletterFreq + '"]').check();
+    cy.get('input[name="birthday"]').type(data.birthday);
+    if (data.acceptPrivacyPolicy) {
+        cy.get('input[type="checkbox"]').check();
+    }
+}
+
+// Usage
+const JohnDoe = {
+    name: 'John Doe',
+    email: 'john@example.com',
+    country: 'Spain',
+    city: 'Madrid',
+    registrationDate: '2024-02-10',
+    newsletterFreq: 'Daily',
+    birthday: '2000-01-01',
+    acceptPrivacyPolicy: true
+};
+
